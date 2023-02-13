@@ -67,10 +67,12 @@
                     <configuration>
                         <includes>
 <!--                            <include>**/MySqlTest1.java</include>-->
-                            <include>**/MySqlTest3.java</include>
+<!--                            <include>**/MySqlTest3.java</include>-->
+                            <include>**/MySqlTest4.java</include>
                         </includes>
                         <excludes>
                             <exclude>**/BaseMySqlTest.java</exclude>
+                            <exclude>**/FlywayMySqlTest.java</exclude>
                         </excludes>
                     </configuration>
                 </plugin>

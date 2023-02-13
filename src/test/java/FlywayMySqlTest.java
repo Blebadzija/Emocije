@@ -1,10 +1,10 @@
 import org.etsntesla.it.spring.BeanFactory;
+import org.etsntesla.it.spring.FlywayManager;
 import org.etsntesla.it.spring.MySQLManagerBean;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,11 +12,11 @@ import java.sql.Statement;
 
 public class FlywayMySqlTest {
 
-    protected Flyway flyway;
-    protected Statement statement;
+    protected static Flyway flyway;
+    protected static Statement statement;
 
     @BeforeAll
-    void baseInit() throws SQLException {
+    static void baseInit() throws SQLException {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(BeanFactory.class);
         statement = ctx.getBean(MySQLManagerBean.class).getConnection().createStatement();
         flyway = ctx.getBean(FlywayManager.class).getFlyway();

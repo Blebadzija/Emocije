@@ -1,3 +1,5 @@
+package org.etsntesla.it.spring;
+
 import org.etsntesla.it.spring.DatabaseConfiguration;
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.InitializingBean;
