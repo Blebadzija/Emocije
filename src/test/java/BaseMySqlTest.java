@@ -24,6 +24,12 @@ public class BaseMySqlTest {
         resDir="db_dump";
     }
 
+    @AfterAll
+    static void close() throws SQLException {
+        statement.close();
+        conn.close();
+    }
+
 
 
     static void showTable(){

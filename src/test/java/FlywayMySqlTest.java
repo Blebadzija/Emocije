@@ -2,10 +2,12 @@ import org.etsntesla.it.spring.BeanFactory;
 import org.etsntesla.it.spring.FlywayManager;
 import org.etsntesla.it.spring.MySQLManagerBean;
 import org.flywaydb.core.Flyway;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,6 +22,13 @@ public class FlywayMySqlTest {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(BeanFactory.class);
         statement = ctx.getBean(MySQLManagerBean.class).getConnection().createStatement();
         flyway = ctx.getBean(FlywayManager.class).getFlyway();
+    }
+
+    @AfterAll
+    static void close() throws SQLException {
+        Connection connection = statement.getConnection();
+        statement.close();
+        connection.close();
     }
 
     static void showTable(){
