@@ -1,5 +1,5 @@
-import jakarta.transaction.Transaction;
 import org.etsntesla.it.Emocije;
+import org.hibernate.Transaction;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,8 +19,9 @@ public class MySqlTest5 extends JpaMySqlTest{
         try {
             Emocije emocije = new Emocije();
             emocije.setId(4);
-
-
+            transaction = session.beginTransaction();
+            session.remove(emocije);
+            transaction.commit();
         }catch (Exception e){
             transaction.rollback();
         }
